@@ -106,6 +106,28 @@ You can also run the server directly:
 python main.py
 ```
 
+## MCP Configuration
+
+```json
+"mcp": {
+    "servers": {
+        "fal-ai": {
+            "command": "docker",
+            "args": [
+                "run",
+                "-i",
+                "--rm",
+                "-e",
+                "FAL_KEY=YOUR_FAL_API_KEY_HERE",
+                "-p",
+                "8000:8000",
+                "mcp-fal"
+            ]
+        }
+    }
+}
+```
+
 ## API Reference
 
 ### Tools
