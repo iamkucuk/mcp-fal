@@ -14,13 +14,16 @@ A Model Context Protocol (MCP) server for interacting with fal.ai models and ser
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.10+ (for local installation)
 - fastmcp
 - httpx
 - aiofiles
 - A fal.ai API key
+- Docker (optional, for containerized deployment)
 
 ## Installation
+
+### Local Installation
 
 1. Clone this repository:
 ```bash
@@ -38,9 +41,35 @@ pip install fastmcp httpx aiofiles
 export FAL_KEY="YOUR_FAL_API_KEY_HERE"
 ```
 
+### Docker Installation
+
+1. Clone this repository:
+```bash
+git clone https://github.com/am0y/mcp-fal.git
+cd mcp-fal
+```
+
+2. Build and run using Docker Compose:
+```bash
+# Set your API key as an environment variable
+export FAL_KEY="YOUR_FAL_API_KEY_HERE"
+
+# Start the server
+docker-compose up -d
+```
+
+3. Alternatively, build and run the Docker container directly:
+```bash
+# Build the Docker image
+docker build -t mcp-fal .
+
+# Run the container
+docker run -p 8000:8000 -e FAL_KEY="YOUR_FAL_API_KEY_HERE" mcp-fal
+```
+
 ## Usage
 
-### Running the Server
+### Running the Server Locally
 
 You can run the server in development mode with:
 
@@ -49,6 +78,15 @@ fastmcp dev main.py
 ```
 
 This will launch the MCP Inspector web interface where you can test the tools interactively.
+
+### Running with Docker
+
+The server will be available at http://localhost:8000 when running with Docker.
+
+To stop the server when using Docker Compose:
+```bash
+docker-compose down
+```
 
 ### Installing in Claude Desktop
 
@@ -79,7 +117,7 @@ python main.py
 - `result(url)` - Get result from a queued request
 - `status(url)` - Check status of a queued request
 - `cancel(url)` - Cancel a queued request
-- `upload(path` - Upload a file to fal.ai CDN
+- `upload(path)` - Upload a file to fal.ai CDN
 
 ## License
 
