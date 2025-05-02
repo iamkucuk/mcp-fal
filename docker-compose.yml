@@ -3,10 +3,8 @@ version: '3'
 services:
   mcp-server:
     build: .
-    ports:
-      - "8000:8000"
     environment:
       - FAL_KEY=${FAL_KEY}
+    stdin_open: true  # Required for stdio transport
+    tty: true        # Required for stdio transport
     restart: unless-stopped
-    volumes:
-      - ./uploads:/app/uploads
